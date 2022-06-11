@@ -1,4 +1,1 @@
 # NLPResearch
-
-## Yuan-Cheng Su
-
