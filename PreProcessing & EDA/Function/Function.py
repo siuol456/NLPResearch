@@ -1,3 +1,10 @@
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+from collections import Counter
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set()
 class base_wordpro:
     # seperate list for punctuation
     plist = ['!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','[','\\',
@@ -16,10 +23,10 @@ class base_wordpro:
                   "wasn't",'weren',"weren't",'won',"won't",'wouldn',"wouldn't"]
     # Add a function that alows customised stopwords by appending to the original list.
     def stop_w_selfadd(x):
-        hw1_NLP.stop_w_eng.append(x)
+        base_wordpro.stop_w_eng.append(x)
     # Function that rest the stopword list
     def reset_stopword():
-        hw1_NLP.stop_w_eng = ['i','me','my','myself','we','our','ours','ourselves','you',"you're","you've","you'll","you'd",'your','yours',
+        base_wordpro.stop_w_eng = ['i','me','my','myself','we','our','ours','ourselves','you',"you're","you've","you'll","you'd",'your','yours',
                 'yourself','yourselves','he','him','his','himself','she',"she's",'her','hers','herself','it',"it's",'its','itself',
                 'they','them','their','theirs','themselves','what','which','who','whom','this','that',"that'll",'these','those',
                 'am','is','are','was','were','be','been','being','have','has','had','having','do','does','did','doing','a','an',
@@ -37,11 +44,11 @@ class base_wordpro:
         return(df)
     # 2.2 Function for punctuation
     def removePunc(df):
-        df.review = df.review.apply(lambda x: " ".join(x for x in x.split() if x not in hw1_NLP.plist))
+        df.review = df.review.apply(lambda x: " ".join(x for x in x.split() if x not in base_wordpro.plist))
         return(df)
     # 2.3 Function for stopwords
     def removestop(df):
-        df.review = df.review.apply(lambda x: " ".join(x for x in x.split() if x not in hw1_NLP.stop_w_eng))
+        df.review = df.review.apply(lambda x: " ".join(x for x in x.split() if x not in base_wordpro.stop_w_eng))
         return(df)
     # 2.4 function for tokenization
     def wordToken(df):
